@@ -42,6 +42,12 @@ public class UserAccountApi {
         this(Configuration.getDefaultApiClient());
     }
 
+    public UserAccountApi(String token, String address, String scheme) {
+        this(Configuration.getDefaultApiClient());
+        apiClient.setAccessToken(token);
+        apiClient.setBasePath(scheme + "://" + address + "/o/headless-admin-user/");
+    }
+
     public UserAccountApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
@@ -2363,7 +2369,7 @@ public class UserAccountApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[] { "oauth" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     

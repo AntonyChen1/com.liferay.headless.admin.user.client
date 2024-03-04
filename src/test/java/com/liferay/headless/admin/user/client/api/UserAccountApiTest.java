@@ -14,6 +14,7 @@ package com.liferay.headless.admin.user.client.api;
 
 import com.liferay.headless.admin.user.client.model.PageUserAccount;
 import com.liferay.headless.admin.user.client.model.UserAccount;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -27,7 +28,7 @@ import java.util.Map;
 /**
  * API tests for UserAccountApi
  */
-@Ignore
+//@Ignore
 public class UserAccountApiTest {
 
     private final UserAccountApi api = new UserAccountApi();
@@ -325,10 +326,16 @@ public class UserAccountApiTest {
      */
     @Test
     public void getUserAccountByEmailAddressTest() throws Exception {
-        String emailAddress = null;
-        UserAccount response = api.getUserAccountByEmailAddress(emailAddress);
+        String emailAddress = "test@liferay.com";
+        String address = "localhost:8080";
+        String scheme = "http";
+        String token = "eyJ0eXAiOiJhdCtqd3QiLCJhbGciOiJSUzI1NiJ9.eyJqdGkiOiI0OWEzZDM2NjM3NzdiNWMxNzFjMjJhNzllNGZhZjBmYWFiZjlkOWEzYmYzODZlY2UyZjJkYzgzZWRmYWI3ODc0IiwiY2xpZW50X2lkIjoiaWQtM2U5Yjg0ZTItODM0Yi1mOTgwLTUxYjEtZGY3NDQ2OWJmZjM3IiwiaWF0IjoxNzA5NTI0Mjg1LCJleHAiOjE3MDk1MjQ4ODUsInN1YiI6IjIwMTIzIiwidXNlcm5hbWUiOiJ0ZXN0IiwiaXNzIjoibG9jYWxob3N0Iiwic2NvcGUiOiJMaWZlcmF5LkhlYWRsZXNzLkFkbWluLlVzZXIuZXZlcnl0aGluZy5yZWFkIExpZmVyYXkuSGVhZGxlc3MuRGVsaXZlcnkuZXZlcnl0aGluZyIsImdyYW50X3R5cGUiOiJjbGllbnRfY3JlZGVudGlhbHMifQ.kiUghxwDWJW0SodQylbEQHZfsw1GlhJxTtPiM9TX3nL8iCNuG2NognW3On0_JkHvwJLmF3Y6yG0IJplKedwUXJdY_2Gn4waMabpQthSbioe8hGvx3ZoTE7VU34Ut9czWH6fuw-0YcdxN7vArgRxfNQPyeAmUjAOCKxZDVX5hzhhC2-Tfe1RxlSF278xhsbz7hf6ZznHoT6ml0nSWy0ziGqGCEzXUCcXzq-QeUqlJwtirQ62H_OlIfzlfm9l83NQQdzNL9bL0SPeOjrCo009uVGLVVpXPMHjHTvdgiupOkiD_VJ_GvLDPCaPmE1DpvMowWyEJv3jtGIL2Lz-HdI9QmQ";
 
-        // TODO: test validations
+        UserAccountApi api = new UserAccountApi(token, address, scheme);
+        UserAccount response = api.getUserAccountByEmailAddress(emailAddress);
+        String res = response.getEmailAddress();
+
+        Assert.assertEquals(emailAddress, res);
     }
     /**
      * 
