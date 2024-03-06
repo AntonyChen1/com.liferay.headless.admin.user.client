@@ -1,12 +1,30 @@
-apply plugin: 'idea'
-apply plugin: 'eclipse'
-
-group = 'com.liferay'
+group = 'com.liferay.yamaha'
 version = '1.0.0'
 apply plugin: 'java'
+apply plugin: 'maven-publish'
 
 repositories {
     mavenCentral()
+}
+
+publishing {
+    publications {
+        myLibrary(MavenPublication) {
+            artifactId = 'com.liferay.headless.admin.user.client'
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            allowInsecureProtocol true
+            url 'http://localhost:8081/repository/maven-releases/'
+            credentials {
+                username 'admin'
+                password 'liferay'
+            }
+        }
+    }
 }
 
 dependencies {
